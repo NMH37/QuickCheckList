@@ -8,9 +8,9 @@ import { CreateProductComponent } from './products/create-product/create-product
 const routes: Routes = [
   { path: '', redirectTo: 'recipes', pathMatch: 'full' },
   { path: 'recipes', component: ProductListComponent },
-  { path: 'recipes/new', component: CreateProductComponent },
+  // { path: 'recipes/new', component: CreateProductComponent },
   { path: 'recipes/:id', component: DetailsComponent },
-  { path: 'recipes/:id/edit', component: CreateProductComponent },
+  // { path: 'recipes/:id/edit', component: CreateProductComponent },
 ];
 
 @NgModule({
