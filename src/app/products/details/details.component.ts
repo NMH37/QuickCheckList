@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ProductsService } from './../../services/products.service';
 import { Product } from './../product.model';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-details',
@@ -14,7 +15,7 @@ export class DetailsComponent implements OnInit {
   productId: string;
   color = '';
   like = true;
-  // indg: string[] = [];
+  private productSubs: Subscription;
   errors: string[] = [];
   likes = 0;
   ingredients: any[];
@@ -26,7 +27,7 @@ export class DetailsComponent implements OnInit {
     }
   }
 
-  selectAll(select: NgModel, values, array) {
+  selectAll(select: NgModel, values) {
     select.update.emit(values);
   }
 
@@ -46,19 +47,16 @@ export class DetailsComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('id')) {
         this.productId = paramMap.get('id');
-        this.productService.getProduct(this.productId)
-          .subscribe((product: Product) => {
-            this.product = product;
-            this.ingredients = [
-              { id: 1, viewValue: this.product.ingredient1 },
-              { id: 2, viewValue: this.product.ingredient2 },
-              { id: 3, viewValue: this.product.ingredient3 },
-            ];
-          }
-          );
+        this.product = this.productService.getProduct(this.productId);
+        this.ingredients = [
+          { id: 1, viewValue: this.product.ingredient1 },
+          { id: 2, viewValue: this.product.ingredient2 },
+          { id: 3, viewValue: this.product.ingredient3 },
+        ];
       }
-
     });
-  }
 
+  }
 }
+
+

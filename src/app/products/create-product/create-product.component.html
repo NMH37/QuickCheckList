@@ -14,7 +14,7 @@
 
     <mat-form-field>
       <input matInput type="text" name="type" [ngModel]="product?.type" placeholder="Image Link" required #type="ngModel" minlength="12">
-      <mat-error *ngIf="type.invalid">Type needs to be least 3 characters long</mat-error>
+      <mat-error *ngIf="type.invalid">Image URL needed </mat-error>
     </mat-form-field>
     <mat-form-field>
       <input matInput type="text" name="description" [ngModel]="product?.description" placeholder="Description" required #description="ngModel"
